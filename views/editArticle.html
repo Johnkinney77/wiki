@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link type="text/css" rel="stylesheet" href="/styles.css">
+  <meta charset="UTF-8">
+  <title>{{title}}</title>
+</head>
+<body>
+  <h1>Edit "{{title}}"</h1>
+  <h3>Author {{first_name}} {{last_name}}
+  <div id="date">Date Made: {{date_made}}</div>
+  <form>
+    <textarea name="content_updated" >{{content}}</textarea>
+    <button method="/{{title}}/save" action="POST">Save</button>
+  </form>
+</body>
+</html>

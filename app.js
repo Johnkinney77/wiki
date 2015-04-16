@@ -34,25 +34,42 @@ app.get('/article/new', function (req, res) {
 });
 
 app.post('/article/create', function (req, res) {
-  var date = new Date().toString().split(' ');
-  var newDate = date.splice(0, 5).join(' ');
+  var date = new Date().toString().split(' ').splice(0, 5).join(' ');
   var articleInfo = req.body;
   var author = req.body.author.split(' ');
-  db.all("SELECT ID FROM users WHERE first_name='" + author[0] + "' AND last_name='" + author[1] + "';", function (error, userID) {
-    db.run("INSERT INTO articles (AID, title, date, image, user_id, content, category) VALUES (null, '" + articleInfo.title +"', '" + newDate + "', '" + articleInfo.url + "'," + userID + ", '" + articleInfo.content + "', '" + articleInfo.category + "');")
-  });
 
-  
+  db.all("SELECT ID FROM users WHERE first_name='" + author[0] + "' AND last_name='" + author[1] + "';", function (error, userID) {
+    console.log(userID);
+    db.run("INSERT INTO articles (AID, title, date_made, image, user_id, content, category) VALUES (null, '" + articleInfo.title +"', '" + date + "', '" + articleInfo.url + "', " + userID[0].ID + ", '" + articleInfo.content + "', '" + articleInfo.category + "');");
+
+    db.all("SELECT AID FROM articles WHERE title='" + articleInfo.title + "';", function (error, articleID) {
+      db.run("INSERT INTO changelog (CID, article_id, user_id, content_update, date_update) VALUES (null, " + articleID[0].AID + ", " + userID[0].ID + ", '" +  articleInfo.content + "', '" + date + "');");
+
+      res.redirect('/' + articleInfo.title);
+    });
+  });
 });
 
 app.get('/:articleName', function (req, res) {
   var title = req.params.articleName;
   var template = fs.readFileSync('./views/individualArticle.html', 'utf8');
-  db.all("SELECT ID, first_name, last_name, email, AID, title, date_made, image, content, category, CID, date_update, content_update FROM users, articles, changelog WHERE users.ID = articles.user_id AND articles.AID = changelog.article_id AND title='" + title + "';", function (error, individualArticle) {
+  db.all("SELECT ID, first_name, last_name, email, AID, title, date_made, image, content, category, CID, date_update, content_update FROM users, articles, changelog WHERE users.ID = articles.user_id AND articles.AID = changelog.article_id AND articles.title='" + title + "';", function (error, individualArticle) {
+      console.log(individualArticle)
       var html = mustache.render(template, individualArticle[0]);
       res.send(html);
   });
 });
+
+app.get('/:articleName/edit', function (req, res) {
+  var title = req.params.articleName;
+  var template = fs.readFileSync('./views/editArticle.html', 'utf8');
+  db.all("SELECT * FROM articles, users WHERE title='" + title +"' AND user_id = ID;", function (error, data) {
+    var html = mustache.render(template, data[0]);
+    res.send(data);
+  });
+
+});
+
 
 
 
