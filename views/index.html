@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link type="text/css" rel="stylesheet" href="/styles.css">
+	<meta charset="UTF-8">
+	<title>Work Wiki</title>
+</head>
+<body>
+  <h1>Welcome to Work Wiki</h1>
+  <a href="article/new">Create New Article</a>
+  {{#allArticles}}
+  <a href="/{{title}}">
+    <div class="articles">
+      <span>{{first_name}}
+      {{last_name}}</span>
+      <span>{{title}}
+      {{date_made}}</span>
+    </div>
+  </a>
+  {{/allArticles}}
+</body>
+</html>

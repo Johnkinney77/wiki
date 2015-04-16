@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link type="text/css" rel="stylesheet" href="/styles.css">
+  <meta charset="UTF-8">
+  <title>New Article</title>
+</head>
+<body>
+  <form action="/article/create" method="POST">
+    <label>Title</label>
+    <input name="title" type="text" placeholder="Cats are the Best!">
+    <label>Author</label>
+    <select name="author">
+      {{#authors}}
+      <option>{{first_name}} {{last_name}}</option>
+      {{/authors}}
+    </select>
+    <label>Image Url</label>
+    <input name="url" placeholder="cat">
+    <label>Content</label>
+    <textarea  name="content"></textarea>
+    <label>Category</label>
+    <input name="category" placeholder="cat">
+    <button type="submit">Create Article</button>
+
+  </form>
+</body>
+</html>
