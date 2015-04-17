@@ -7,9 +7,11 @@
 </head>
 <body>
 <h1>{{title}}</h1>
-<div id="author">{{first_name}}{{last_name}}</div>
-<div id="date">Date Made: {{date_made}} | Last Update {{date_update}}</div>
-<p>{{content_update}}</p>
+{{category}}
+<a href='/'>Home</a> <a href='/{{title}}/changelog'>Changelog</a>
+<div id="author">Author: {{first_name_author}} {{last_name_author}} Date Made: {{date_made}}</div>
+<div id="date">Editor: {{first_name_editor}} {{last_name_editor}} | Last Update {{date_update}}</div>
+<p>{{content}}</p>
 <a href="/{{title}}/edit">Edit</a>
 </body>
 </html>

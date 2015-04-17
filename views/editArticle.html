@@ -6,12 +6,19 @@
   <title>{{title}}</title>
 </head>
 <body>
+  <a href='/'>Home</a>
   <h1>Edit "{{title}}"</h1>
-  <h3>Author {{first_name}} {{last_name}}
-  <div id="date">Date Made: {{date_made}}</div>
-  <form>
-    <textarea name="content_updated" >{{content}}</textarea>
-    <button method="/{{title}}/save" action="POST">Save</button>
+  <h3>Author {{first_name_author}} {{last_name_author}} Date Made: {{date_made}}</h3>
+  <h4>Last Editor {{first_name_editor}} {{last_name_editor}}| Last Modified {{date_update}}</h4>
+  <form method="POST" action="/{{title}}/save">
+    <input name="title" value="{{title}}" style="display: none;">
+    <select name="author">
+      {{#list}}
+      <option>{{first_name_author}} {{last_name_author}}</option>
+      {{/list}}
+    </select>
+    <textarea name="content_update" >{{content}}</textarea>
+    <button type="submit">Save</button>
   </form>
 </body>
 </html>

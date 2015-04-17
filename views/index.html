@@ -8,10 +8,11 @@
 <body>
   <h1>Welcome to Work Wiki</h1>
   <a href="/article/new">Create New Article</a>
+  <a href="/sign-up">First time here? Sign Up!</a>
   {{#allArticles}}
   <a href="/{{title}}">
     <div class="articles">
-      <span>{{first_name}}
+      <span>{{first_name_author}}
       {{last_name}}</span>
       <span>{{title}}
       {{date_made}}</span>
