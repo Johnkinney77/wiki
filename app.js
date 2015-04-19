@@ -241,7 +241,7 @@ app.get('/articles/:articleName/changelog/:date_update', function (req, res) {
       articleData[0].content_marked = marked(articleData[0].changelog[0].content_update);
 
       var html = mustache.render(template, articleData[0]);
-      res.send(articleData)
+      res.send(html)
     });
   });
 });
