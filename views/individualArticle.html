@@ -2,16 +2,35 @@
 <html>
 <head>
   <link type="text/css" rel="stylesheet" href="/styles.css">
+  <link type="text/css" rel="stylesheet" href="/articles.css">
   <meta charset="UTF-8">
   <title>{{title}}</title>
 </head>
-<body>
-<h1>{{title}}</h1>
-{{category}}
-<a href='/'>Home</a> <a href='/{{title}}/changelog'>Changelog</a>
-<div id="author">Author: {{first_name_author}} {{last_name_author}} Date Made: {{date_made}}</div>
-<div id="date">Editor: {{first_name_editor}} {{last_name_editor}} | Last Update {{date_update}}</div>
-<p>{{content}}</p>
-<a href="/{{title}}/edit">Edit</a>
+<body style="background-image: url('{{image}}')">
+<nav>
+  <a href='/'>Home</a>
+  <a href='/articles/{{title}}/changelog'>Changelog</a>
+  <a href="/sign-up">Sign Up</a> 
+</nav>
+<!-- <img src="{{image}}"> -->
+<div id="body" class="individualArticlePage">
+  <div>
+    <div id="header">
+      <h1>{{title}}</h1>
+      <div>
+        <p><span class="bold">Category:</span> {{category}}</p>
+        <p><span class="bold">Author:</span> {{first_name_author}} {{last_name_author}} | <span class="bold">Date:</span> {{date_made}}</p>
+        <p><span class="bold">Editor:</span> {{first_name_editor}} {{last_name_editor}} | <span class="bold">Last Edit:</span> {{date_update}}</p>  
+      </div>  
+    </div>
+  </div>
+  <div id="content" class="border-radius">
+    {{{content_marked}}}
+  </div>
+  <div>
+    <a id="emailButton" href='/email/{{first_name_author}} {{last_name_author}}'>Email {{first_name_author}} {{last_name_author}}</a>
+    <a id="editButton" href="/articles/{{title}}/edit">Edit</a>
+  </div>
+  </div>
 </body>
 </html>

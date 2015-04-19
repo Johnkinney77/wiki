@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link type="text/css" rel="stylesheet" href="/styles.css">
+  <meta charset="UTF-8">
+  <title>{{title}}</title>
+</head>
+<body>
+<nav>
+  <a href='/'>Home</a>
+  <a href="/sign-up">Sign Up</a>
+</nav>
+<div id="body">
+  <h1>Email {{first_name_author}} {{last_name_author}}</h1>
+  <form method="POST" action="/email/{{first_name_author}} {{last_name_author}}">
+    <div class="inline" class="user">
+      <label>Your Are?</label>
+      <select name="user">
+        {{#list}}
+        <option>{{first_name_author}} {{last_name_author}}</option>
+        {{/list}}
+      </select>
+    </div>
+    <div class="inline" class="subject">
+      <label>Email Subject</label>
+      <input name="subject" placeholder="I love your article {{first_name_author}} {{last_name_author}}">
+    </div>
+    <div>
+      <label>Message</label>
+      <textarea name="message" placeholder="Please Put Message Here"></textarea>
+    </div>
+    <button id="emailButton" type="submit">Send</button>
+  </form>
+  </div>
+</body>
+</html>

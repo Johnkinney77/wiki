@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link type="text/css" rel="stylesheet" href="/styles.css">
+  <meta charset="UTF-8">
+  <title>{{title}}</title>
+</head>
+<body>
+<nav>
+  <a href='/'>Home</a>
+  <a href="/article/new">Create New Article</a>
+  <a href="/sign-up">Sign Up</a>
+</nav>
+  <div id="body">
+    <h1>{{title}}</h1>
+    <p><span class="bold">Category:</span> {{category}}
+      {{#changelog}}<div><span class="bold">Editor:</span> {{first_name_editor}} {{last_name_editor}} | <span class="bold">Date:</span> {{date_update}}</div></p>
+    
+    <div id="content">
+       {{{content_marked}}}
+   </div>
+
+      {{/changelog}}
+      <a id="editButton" href="/articles/{{title}}/edit">Edit</a>
+  </div>
+</body>
+</html>

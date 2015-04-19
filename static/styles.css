@@ -1,15 +1,154 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: helvetica;
+  text-decoration: none;
+  color: black;
 }
 
 body {
-  background-color: #F0F0F0;
+  background-color: white;
+  background-size: 100vw;
+  background-repeat: no-repeat;
+  margin-bottom: 100px;
 }
 
 .articles {
-  background-color: white;
-  margin: 20px;
+  background-color: #F0F0F0;
+  margin:  20px 0;
   padding: 20px;
+  border-radius: 5px
 }
 
+.articles:hover {
+  background-color: orange;
+}
+
+nav {
+  width: 100%;
+  background-color: rgb(52, 52, 52);
+  height: 50px;
+  position:fixed;
+}
+
+nav a {
+  font-size: 16px;
+  line-height: 50px;
+  padding: 17px 17px 17px 20px;
+  color: white;
+}
+
+nav a:hover {
+  background-color: white;
+  color: black;
+}
+
+
+h1 {
+  font-size: 75px;
+  font-weight: 200;
+}
+
+.author {
+}
+
+.title {
+  display:inline-block;
+  width: 200px;
+  padding-right: 20px;
+  font-weight: 800;
+}
+
+#body {
+  padding-top: 80px; 
+  margin: 0 20px;
+}
+
+#content {
+  padding:20px 0;
+  border-radius: 3px;
+}
+
+.bold {
+  font-weight: 800;
+}
+
+button {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+#editButton, button, #emailButton {
+  padding:10px;
+  width: auto;
+  display: block;
+  text-align: center;
+  background-color: black;
+  color:white;
+  border-radius: 5px;
+  border: none;
+  display: inline-block;
+}
+
+#editButton:hover, button:hover, #emailButton:hover {
+  background-color: orange;
+}
+
+input, select, textarea {
+  display: block;
+  border: none;
+  padding: 10px;
+  border-radius: 3px;
+  margin: 10px 0;
+  background-color: #F0F0F0;
+  font-size: 16px;
+}
+input {
+  width: 98%;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: -webkit-focus-ring-color auto 5px;
+  outline-color: orange;
+  outline-style: auto;
+  outline-width: 5px;
+}
+
+textarea {
+  width: 98%;
+  height: 300px;
+  background-color: #F0F0F0;
+}
+
+select {
+  height: 33px;
+  width: 300px;
+  min-width: 120px; 
+}
+
+div .inline input {
+  width: 60%;
+  min-width: 300px; 
+}
+
+
+
+img{
+  width: 100%;
+  height: auto;
+}
+
+#header {
+  display: inline-block;
+  border-radius: 3px;
+  padding:20px;
+  background-color: rgba(255, 255, 255, .8);
+}
+#inline-block {
+  display: inline-block;
+}
+
+label {
+  display: block;
+  margin-top: 20px;
+}

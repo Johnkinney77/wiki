@@ -6,18 +6,26 @@
 	<title>Work Wiki</title>
 </head>
 <body>
-  <h1>Welcome to Work Wiki</h1>
+<nav>
+  <a href='/'>Home</a>
   <a href="/article/new">Create New Article</a>
-  <a href="/sign-up">First time here? Sign Up!</a>
+  <a href="/sign-up">Sign Up</a>
+</nav>
+<div id="body">
+<h1>Welcome to Work Wiki</h1>
+<form action="/search" method="GET">
+  <input name="search" type="text" placeholder="Search">
+  <button type="submit"> submit </button>
+</form>
   {{#allArticles}}
-  <a href="/{{title}}">
+  <a href="/articles/{{title}}">
     <div class="articles">
-      <span>{{first_name_author}}
-      {{last_name}}</span>
-      <span>{{title}}
-      {{date_made}}</span>
+      <span class="title">{{title}}</span>
+      <span class="author">{{date_made}} - {{first_name_author}}
+      {{last_name_author}}</span>
     </div>
   </a>
   {{/allArticles}}
+</div>
 </body>
 </html>

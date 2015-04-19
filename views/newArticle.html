@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link type="text/css" rel="stylesheet" href="/styles.css">
+  <link type="text/css" rel="stylesheet" href="/styles.css">  <script src="lib/marked.js"></script>
   <meta charset="UTF-8">
   <title>New Article</title>
 </head>
 <body>
-  <a href='/'>Home</a>
-  <form action="/article/create" method="POST">
-    <label>Title</label>
-    <input name="title" type="text" placeholder="Cats are the Best!">
-    <label>Author</label>
-    <select name="author">
-      {{#authors}}
-      <option>{{first_name_author}} {{last_name_author}}</option>
-      {{/authors}}
-    </select>
-    <label>Image Url</label>
-    <input name="url" placeholder="cat">
-    <label>Content</label>
-    <textarea  name="content"></textarea>
-    <label>Category</label>
-    <input name="category" placeholder="cat">
-    <button type="submit">Create Article</button>
-
-  </form>
+  <nav>
+    <a href='/'>Home</a>
+  </nav>
+  <div id="body">
+    <h1>New Article</h1>
+    <form action="/article/create" method="POST">
+      <label>Author</label>
+      <select name="author" required>
+        {{#authors}}
+        <option>{{first_name_author}} {{last_name_author}}</option>
+        {{/authors}}
+      </select>
+      <label>Title</label>
+      <input name="title" type="text" placeholder="Cats are the Best!" required>
+      <label>Image Url</label>
+      <input name="url" placeholder="http://globe-views.com/dcim/dreams/cat/cat-02.jpg" required>
+      <label>Content</label>
+      <textarea  name="content" placeholder="Article Text Here" required></textarea>
+      <label>Category</label>
+      <input name="category" placeholder="Cat" required>
+      <button type="submit">Create Article</button>
+    </form>
+  </div>
 </body>
 </html>
