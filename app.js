@@ -12,6 +12,11 @@ var marked = require('marked');
 var db = new sqlite3.Database('./workwiki.db')
 var app = express();
 
+
+function getDate (){
+  return new Date().toString().split(' ').splice(1, 4).join(' ');
+}
+
 //middleware
 app.use(methodOverride('_method'))
 app.use(morgan('dev'));
@@ -118,7 +123,7 @@ app.get('/article/new', function (req, res) {
 
 //creating new article
 app.post('/article/create', function (req, res) {
-  var date = new Date().toString().split(' ').splice(0, 5).join(' ');
+  var date = getDate();
   var articleInfo = req.body;
   var author = req.body.author.split(' ');
 
@@ -184,7 +189,7 @@ app.get('/articles/:articleName/edit', function (req, res) {
 //saving article edit
 app.post('/articles/:articleName/save', function (req, res) {
     var body = req.body;
-    var date = new Date().toString().split(' ').splice(0, 5).join(' ');
+    var date = getDate();
     var author = body.author.split(' ');
 
     //getting articles id
