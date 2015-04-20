@@ -78,7 +78,7 @@ button {
   margin-top: 10px;
 }
 
-#editButton, button, #emailButton {
+.bottomButton, button {
   padding:10px;
   width: auto;
   display: block;
@@ -90,7 +90,7 @@ button {
   display: inline-block;
 }
 
-#editButton:hover, button:hover, #emailButton:hover {
+.bottomButton:hover, button:hover {
   background-color: orange;
 }
 
@@ -151,4 +151,16 @@ img{
 label {
   display: block;
   margin-top: 20px;
+}
+
+#homeSelect {
+  width: 25%;
+  height: 39px;
+  margin: 0 1%;
+  display: inline;
+}
+
+#homeSearch {
+  width: 65%;
+  display: inline;
 }

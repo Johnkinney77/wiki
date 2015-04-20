@@ -14,14 +14,13 @@
   <div id="body">
     <h1>{{title}}</h1>
     <p><span class="bold">Category:</span> {{category}}
-      {{#changelog}}<div><span class="bold">Editor:</span> {{first_name_editor}} {{last_name_editor}} | <span class="bold">Date:</span> {{date_update}}</div></p>
-    
+    {{#changelog}}
+    <div><span class="bold">Editor:</span> {{first_name_editor}} {{last_name_editor}} | <span class="bold">Date:</span> {{date_update}}</div></p>    
     <div id="content">
-       {{{content_marked}}}
-   </div>
-
+    {{{content_marked}}}
+     </div>
       {{/changelog}}
-      <a id="editButton" href="/articles/{{title}}/edit">Edit</a>
+     <a class="bottomButton" href='/articles/{{title}}/changelog'>Changelog</a>
   </div>
 </body>
 </html>

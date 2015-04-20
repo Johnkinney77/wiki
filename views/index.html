@@ -14,8 +14,12 @@
 <div id="body">
 <h1>Welcome to Work Wiki</h1>
 <form action="/search" method="GET">
-  <input name="search" type="text" placeholder="Search">
-  <button type="submit"> submit </button>
+  <input id="homeSearch" name="search" type="text" placeholder="Search">
+  <select id="homeSelect" name="sort">
+    <option value="DESC">Newest First</option>
+    <option value="ASC">Oldest First</option>
+  </select>
+  <button type="submit">Submit</button>
 </form>
   {{#allArticles}}
   <a href="/articles/{{title}}">

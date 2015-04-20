@@ -9,7 +9,6 @@
   <nav>
     <a href='/'>Home</a>
     <a href="/article/new">Create New Article</a>
-    <a href="/articles/{{title}}">Back to {{title}}</a>
     <a href="/sign-up">Sign Up</a>
   </nav>
   <div id="body">
@@ -19,13 +18,19 @@
     <p><span class="bold">Editor:</span> {{first_name_editor}} {{last_name_editor}} | <span class="bold">Last Edit:</span> {{date_update}}</p> 
     <form method="POST" action="/articles/{{title}}/save">
       <input name="title" value="{{title}}" style="display: none;">
+      <label>Editor:</label>
       <select name="author">
         {{#list}}
         <option>{{first_name_author}} {{last_name_author}}</option>
         {{/list}}
       </select>
+      <label>Image URL:</label>
+      <input name="image" value="{{image}}">
+      <label>Content:</label>
       <textarea name="content_update" >{{content}}</textarea>
       <button type="submit">Save</button>
+      <a class="bottomButton" href="/articles/{{title}}">Back to {{title}}</a>
+
     </form>
   </div>
 </body>

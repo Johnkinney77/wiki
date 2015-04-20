@@ -6,7 +6,7 @@ var fs = require('fs');
 var methodOverride = require('method-override');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
-var sendgrid = require('sendgrid')('johnkinney77', '2037083pratt');
+var sendgrid = require('sendgrid')('', '');
 var marked = require('marked');
 
 var db = new sqlite3.Database('./workwiki.db')
@@ -35,7 +35,7 @@ marked.setOptions({
 //home page
 app.get('/', function (req, res) {
 	var template = fs.readFileSync('./views/index.html', 'utf8');
-  db.all('SELECT ID, first_name_author, last_name_author, AID, title, date_made FROM users, articles WHERE users.ID = articles.author_id', function (error, articles) {
+  db.all('SELECT ID, first_name_author, last_name_author, AID, title, date_made FROM users, articles WHERE users.ID = articles.author_id ORDER BY date_made DESC;', function (error, articles) {
       //mustache rendering
       var html = mustache.render(template, {allArticles: articles});
       res.send(html);
@@ -58,16 +58,15 @@ app.post('/sign-up', function (req, res) {
 });
 
 app.get('/search', function (req, res) {
-  var search = req.body;
+  var searchReq = req.query;
   var template = fs.readFileSync('./views/index.html', 'utf8')
-  res.send(req.body);
-    console.log(req.body);
-  /*db.all("SELECT * FROM articles WHERE content LIKE '%" + search + "%';", function (error, results) {
-    
-  });*/
+  db.all("SELECT * FROM articles LEFT JOIN users ON users.id = articles.author_id WHERE content LIKE '%" + searchReq.search + "%' OR category LIKE '%" + searchReq.search + "%' OR title LIKE '%" + searchReq.search + "%' ORDER BY date_made " + searchReq.sort + ";", function (error, results) {
+    var html = mustache.render(template, {allArticles: results})
+    res.send(html);
+  });
 });
-
-
+/*first_name_author WHERE article.author_id = users.ID;
+*/
 //email, not working yet need to be authorized
 app.get('/email/:userName', function (req, res) {
   var template = fs.readFileSync('./views/emailTemplate.html', 'utf8');
@@ -198,7 +197,7 @@ app.post('/articles/:articleName/save', function (req, res) {
         db.run("INSERT INTO changelog (CID, first_name_editor, last_name_editor, content_update, date_update, article_id, editor_id) VALUES (null, '" + author[0] + "', '" + author[1] + "', '" + body.content_update + "', '" + date + "', " + articleID[0].AID + ", " + userID[0].ID + ");");
 
         //updating the content of the artcile in the articles table to be current
-        db.run("UPDATE articles SET content='" + body.content_update + "' WHERE AID=" + articleID[0].AID + ";")
+        db.run("UPDATE articles SET content='" + body.content_update + "', image='" + body.image + "' WHERE AID=" + articleID[0].AID + ";")
         res.redirect('/articles/' + body.title);
       });
     });
